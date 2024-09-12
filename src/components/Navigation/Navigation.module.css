@@ -1,10 +1,10 @@
 /* Navigation.module.css */
 .nav {
   display: flex;
-  gap: 20px;
-  padding: 10px 20px;
-  border-bottom: 1px solid #ccc;
-  background-color: #f8f8f8;
+  gap: 450px;
+  padding: 24px 0px;
+  background-color: #F7F7F7;
+  align-items: center;
 }
 
 .link {
@@ -14,5 +14,22 @@
 }
 
 .activeLink {
-  color: red;
+  color: #D84343;
+}
+
+.logo {
+  margin-left: 64px;
+  color: #101828;
+  font-size: 24px;
+  font-weight: 1000;
+  font-family: Inter, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.subLogo {
+  color: #475467;
+}
+
+.menu {
+  display: flex;
+  gap: 32px;
 }

@@ -1,3 +1,305 @@
-.title {
-    margin: 25px 0px;
+/* Container for the catalog page */
+.catalogPage {
+  display: flex;
+  justify-content: space-between;
+  padding: 48px 0;
+  max-width: 1312px;
+  margin: 0 auto;
+  gap: 64px;
+}
+
+/* Left-side filters section */
+.filtersSection {
+  flex: 0 0 27.4391%;
+  width: 360px;
+}
+
+/* Filter title and categories */
+.filterTitle {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #DADDE1;
+}
+
+.filterGroup {
+  margin-bottom: 20px;
+}
+
+/* Location input */
+.locationLabel {
+  font-size: 16px;
+  font-weight: normal;
+  margin-bottom: 8px;
+  font-family: Inter, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: #6C717B;
+}
+
+.locationInputContainer {
+  position: relative;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.locationInput {
+  width: 100%;
+  padding: 18px 20px;
+  font-size: 16px;
+  border: 0px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  display: block;
+  background-color: #F7F7F7;
+  color: #101828;
+  padding-left: 46px;
+}
+
+.locationInput:placeholder-shown {
+  color: #6C717B;
+}
+
+.locationInput:placeholder-shown + .inputIcon{
+  fill: #6C717B;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+}
+
+.inputIcon {
+    fill: #101828;
+}
+
+/* Equipment filter buttons */
+.filtersLabel {
+    color: #475467;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 32px;
+    font-family: Inter, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+/* Styles for checkboxes */
+.checkboxGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.checkboxLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 18px;
+  border: 1px solid #DADDE1;
+  border-radius: 12px;
+  cursor: pointer;
+  background-color: white;
+  transition: background-color 0.3s;
+  width: 112px;
+  height: 96px;
+  color: #101828;
+  font-size: 16px;
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+}
+
+.checkboxLabel input {
+  display: none;
+}
+
+.checkboxLabelActive {
+  border-color: #E44848;
+}
+
+/* Vehicle type filter options */
+.vehicleTypeGroup {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.vehicleTypeCheckbox {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: white;
+  transition: background-color 0.3s;
+}
+
+.vehicleTypeCheckbox input {
+  display: none;
+}
+
+.vehicleTypeCheckboxActive {
+  background-color: #ff5a5f;
+  color: white;
+  border-color: #ff5a5f;
+}
+
+/* Right-side camper cards */
+.campersList {
+  flex: 0 0 70%;
+}
+
+.camperTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.camperPriceContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.camperFavourite {
+  cursor: pointer;
+  fill: #101828;
+  transition: fill 0.3s;
+}
+
+.camperFavourite:hover {
+  fill: #E44848;
+}
+
+.camperCard {
+  background-color: white;
+  border-radius: 20px;
+  border: 1px solid #DADDE1;
+  padding: 24px;
+  margin-bottom: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.camperCard img {
+  width: 292px;
+  height: 320px;
+  border-radius: 10px;
+  margin-right: 24px;
+  object-fit: cover;
+}
+
+/* Camper card details */
+.camperDetails {
+  flex: 1;
+}
+
+.camperName {
+  font-size: 24px;
+  font-weight: 600;
+  font-family: Inter;
+  color: #101828;
+;
+}
+
+.camperPrice {
+  font-size: 24px;
+  font-weight: 600;
+  font-family: Inter, sans-serif;
+  color: #101828;
+}
+
+.camperInfo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.camperRatingLocationContainer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.camperLocationContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.camperRatingContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.camperDescription {
+  margin-bottom: 24px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 450px;
+}
+
+.camperInfoItem {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-family: Inter, sans-serif;
+  padding: 12px 18px;
+  border-radius: 100px;
+  background-color: #F2F4F7;
+  text-transform: capitalize;
+  gap: 8px;
+}
+
+.camperTransmission {
+    text-transform: capitalize;
+}
+
+/* Show more button */
+.showMoreButton {
+  padding: 16px 40px;
+  background-color: #E44848;
+  color: white;
+  border: none;
+  border-radius: 200px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none;
+  font-size: 16px;
+  font-family: Inter, sans-serif;
+}
+
+.showMoreButton:hover {
+  background-color: #D84343;
+}
+
+/* Load more button */
+.loadMoreBtn {
+  display: block;
+  margin: 20px auto;
+  padding: 15px 30px;
+  background-color: #ff5a5f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.loadMoreBtn:hover {
+  background-color: #e04a4e;
 }

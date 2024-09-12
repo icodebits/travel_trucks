@@ -1,6 +1,6 @@
 import styles from "./CamperDetailPage.module.css";
 
-function HomePage() {
+function CamperDetailPage() {
 
   return (
     <div>
@@ -9,4 +9,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default CamperDetailPage;
