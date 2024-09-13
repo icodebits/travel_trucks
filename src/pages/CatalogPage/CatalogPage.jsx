@@ -46,7 +46,7 @@ const CatalogPage = () => {
         );
       }
       if (filters.type) {
-        filtered = filtered.filter((camper) => camper.type === filters.type);
+        filtered = filtered.filter((camper) => camper.form === filters.type);
       }
       if (filters.hasAC) {
         filtered = filtered.filter((camper) => camper.AC);
@@ -93,6 +93,8 @@ const CatalogPage = () => {
         default:
           break;
       }
+    /*}
+    if (type === "radio") {*/
     } else {
       dispatch(name === "location" ? setLocation(value) : setType(value));
     }
@@ -204,16 +206,60 @@ const CatalogPage = () => {
 
         <div className={styles.filterGroup}>
           <div className={styles.filterTitle}>Vehicle type</div>
-          <div className={styles.vehicleTypeGroup}>
-            <button className={styles.vehicleTypeButton}>Van</button>
-            <button className={styles.vehicleTypeButton}>
-              Fully Integrated
-            </button>
-            <button className={styles.vehicleTypeButton}>Alcove</button>
+
+          <div className={styles.checkboxGroup}>
+            <label
+              className={`${styles.checkboxLabel} ${
+                styles.checkboxLabelLong
+              } ${
+                filters.type === "panelTruck" ? styles.checkboxLabelActive : ""
+              }`}
+            >
+              <SVG id="bi-grid-1x2" width={32} height={32} />
+              <input
+                type="radio"
+                name="type"
+                value="panelTruck"
+                checked={filters.type === "panelTruck"}
+                onChange={handleFilterChange}
+              />
+              Panel Truck
+            </label>
+            <label
+              className={`${styles.checkboxLabel} ${styles.checkboxLabelLong} ${
+                filters.type === "fullyIntegrated"
+                  ? styles.checkboxLabelActive
+                  : ""
+              }`}
+            >
+              <SVG id="bi-grid" width={32} height={32} />
+              <input
+                type="radio"
+                name="type"
+                value="fullyIntegrated"
+                checked={filters.type === "fullyIntegrated"}
+                onChange={handleFilterChange}
+              />
+              Fully integrated
+            </label>
+            <label
+              className={`${styles.checkboxLabel} ${
+                filters.type === "alcove" ? styles.checkboxLabelActive : ""
+              }`}
+            >
+              <SVG id="bi-grid-3x3-gap" width={32} height={32} />
+              <input
+                type="radio"
+                name="type"
+                value="alcove"
+                checked={filters.type === "alcove"}
+                onChange={handleFilterChange}
+              />
+              Alcove
+            </label>
           </div>
         </div>
-
-        <button className={styles.showMoreButton}>Search</button>
+        {/*<button className={styles.showMoreButton}>Search</button>*/}
       </div>
 
       <div className={styles.campersList}>
@@ -271,6 +317,16 @@ const CatalogPage = () => {
                       {camper.engine}
                     </span>
                   )}
+                  {camper.form && (
+                    <span className={styles.camperInfoItem}>
+                      <SVG id="bi-grid" width={20} height={20} />
+                      {camper.form === "fullyIntegrated"
+                        ? "Fully Integrated"
+                        : camper.form === "panelTruck"
+                        ? "Panel Truck"
+                        : camper.form}
+                    </span>
+                  )}
                   {camper.AC && (
                     <span className={styles.camperInfoItem}>
                       <SVG id="wind" width={20} height={20} />
@@ -305,7 +361,12 @@ const CatalogPage = () => {
               </div>
             </div>
           ))}
-        {status === "failed" && <p>Error loading campers</p>}
+        {status === "succeeded" && displayedCampers.length === 0 && (
+          <p className={styles.noCampersFound}>No campers found</p>
+        )}
+        {status === "failed" && (
+          <p className={styles.noCampersFound}>Error loading campers</p>
+        )}
 
         {status === "succeeded" &&
           displayedCampers.length < filteredCampers.length && (

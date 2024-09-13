@@ -111,6 +111,11 @@
   font-size: 16px;
   font-family: Inter, sans-serif;
   font-weight: 500;
+  text-align: center;
+}
+
+.checkboxLabelLong {
+  padding: 4px 18px;
 }
 
 .checkboxLabel input {
@@ -122,34 +127,6 @@
 }
 
 /* Vehicle type filter options */
-.vehicleTypeGroup {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin-bottom: 20px;
-}
-
-.vehicleTypeCheckbox {
-  display: flex;
-  align-items: center;
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 14px;
-  cursor: pointer;
-  background-color: white;
-  transition: background-color 0.3s;
-}
-
-.vehicleTypeCheckbox input {
-  display: none;
-}
-
-.vehicleTypeCheckboxActive {
-  background-color: #ff5a5f;
-  color: white;
-  border-color: #ff5a5f;
-}
 
 /* Right-side camper cards */
 .campersList {
@@ -326,4 +303,13 @@
 
 .loadMoreBtn:hover {
   border-color: #D84343;
+}
+
+.noCampersFound {
+  color: #101828;
+  font-size: 16px;
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+  margin: 16px auto;
+  text-align: center;
 }
