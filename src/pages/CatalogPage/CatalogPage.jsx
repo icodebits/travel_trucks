@@ -108,7 +108,6 @@ const CatalogPage = () => {
 
   return (
     <div className={styles.catalogPage}>
-      {/* Filters section */}
       <div className={styles.filtersSection}>
         <div className={styles.locationLabel}>Location</div>
         <div className={styles.locationInputContainer}>
@@ -200,7 +199,6 @@ const CatalogPage = () => {
               />
               Bathroom
             </label>
-            {/* Add more equipment filters as needed */}
           </div>
         </div>
 
@@ -218,42 +216,41 @@ const CatalogPage = () => {
         <button className={styles.showMoreButton}>Search</button>
       </div>
 
-      {/* Campers List */}
       <div className={styles.campersList}>
         {status === "loading" && <Loader />}
         {status === "succeeded" &&
           displayedCampers.map((camper) => (
             <div key={camper.id} className={styles.camperCard}>
               <img src={camper.gallery[0].thumb} alt={camper.name} />
-
               <div className={styles.camperDetails}>
-                <div className={styles.camperTitle}>
-                  <h2 className={styles.camperName}>{camper.name}</h2>
-                  <div className={styles.camperPriceContainer}>
-                    <p className={styles.camperPrice}>
-                      €
-                      {camper.price.toLocaleString("en", {
-                        useGrouping: false,
-                        minimumFractionDigits: 2,
-                      })}
-                    </p>
-                    <SVG
-                      id="favourite"
-                      width={24}
-                      height={24}
-                      className={styles.camperFavourite}
-                    />
+                <div className={styles.camperTitleLocationContainer}>
+                  <div className={styles.camperTitle}>
+                    <h2 className={styles.camperName}>{camper.name}</h2>
+                    <div className={styles.camperPriceContainer}>
+                      <p className={styles.camperPrice}>
+                        €
+                        {camper.price.toLocaleString("en", {
+                          useGrouping: false,
+                          minimumFractionDigits: 2,
+                        })}
+                      </p>
+                      <SVG
+                        id="favourite"
+                        width={24}
+                        height={24}
+                        className={styles.camperFavourite}
+                      />
+                    </div>
                   </div>
-                </div>
-
-                <div className={styles.camperRatingLocationContainer}>
-                  <div className={styles.camperRatingContainer}>
-                    <SVG id="rating-star" width={20} height={20} />
-                    {camper.rating} ({camper.reviews.length} Reviews)
-                  </div>
-                  <div className={styles.camperLocationContainer}>
-                    <SVG id="map" width={16} height={16} />
-                    {camper.location}
+                  <div className={styles.camperRatingLocationContainer}>
+                    <div className={styles.camperRatingContainer}>
+                      <SVG id="rating-star" width={20} height={20} />
+                      {camper.rating}({camper.reviews.length} Reviews)
+                    </div>
+                    <div className={styles.camperLocationContainer}>
+                      <SVG id="map" width={16} height={16} />
+                      {camper.location}
+                    </div>
                   </div>
                 </div>
 
@@ -262,45 +259,42 @@ const CatalogPage = () => {
                 </div>
 
                 <div className={styles.camperInfo}>
-                  <span
-                    className={`${styles.camperTransmission} ${styles.camperInfoItem}`}
-                  >
-                    <SVG id="diagram" width={20} height={20} />
-                    {camper.transmission}
-                  </span>
+                  {camper.transmission && (
+                    <span className={styles.camperInfoItem}>
+                      <SVG id="diagram" width={20} height={20} />
+                      {camper.transmission}
+                    </span>
+                  )}
+                  {camper.engine && (
+                    <span className={styles.camperInfoItem}>
+                      <SVG id="fuel-pump" width={20} height={20} />
+                      {camper.engine}
+                    </span>
+                  )}
                   {camper.AC && (
-                    <span
-                      className={`${styles.camperTransmission} ${styles.camperInfoItem}`}
-                    >
+                    <span className={styles.camperInfoItem}>
                       <SVG id="wind" width={20} height={20} />
                       AC
                     </span>
                   )}
                   {camper.kitchen && (
-                    <span
-                      className={`${styles.camperTransmission} ${styles.camperInfoItem}`}
-                    >
+                    <span className={styles.camperInfoItem}>
                       <SVG id="cup-hot" width={20} height={20} />
                       Kitchen
                     </span>
                   )}
                   {camper.bathroom && (
-                    <span
-                      className={`${styles.camperTransmission} ${styles.camperInfoItem}`}
-                    >
+                    <span className={styles.camperInfoItem}>
                       <SVG id="bi-droplet" width={20} height={20} />
                       Bathroom
                     </span>
                   )}
                   {camper.TV && (
-                    <span
-                      className={`${styles.camperTransmission} ${styles.camperInfoItem}`}
-                    >
+                    <span className={styles.camperInfoItem}>
                       <SVG id="tv" width={20} height={20} />
                       TV
                     </span>
                   )}
-                  {/* Add other camper details */}
                 </div>
                 <Link
                   to={`/catalog/${camper.id}`}
@@ -313,7 +307,6 @@ const CatalogPage = () => {
           ))}
         {status === "failed" && <p>Error loading campers</p>}
 
-        {/* Load More Button */}
         {status === "succeeded" &&
           displayedCampers.length < filteredCampers.length && (
             <button onClick={loadMore} className={styles.loadMoreBtn}>
