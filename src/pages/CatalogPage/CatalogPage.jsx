@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   fetchCampers,
   setFilteredCampers,
-  resetFilters,
+  resetFilteredList,
 } from "../../redux/campersSlice";
 import {
   setLocation,
@@ -14,6 +14,7 @@ import {
   setHasBathroom,
   setHasTV,
   setTransmission,
+  resetFilters,
 } from "../../redux/filtersSlice";
 import { Link } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
@@ -33,7 +34,10 @@ const CatalogPage = () => {
 
   // Fetch campers data
   useEffect(() => {
-    dispatch(fetchCampers());
+    const fetch = async () => {
+      dispatch(fetchCampers());
+    };
+    fetch();
   }, [dispatch]);
 
   // Apply filters
@@ -65,9 +69,12 @@ const CatalogPage = () => {
       }
       dispatch(setFilteredCampers(filtered));
     };
+
     resetFilters();
+    resetFilteredList();
+    
     applyFilters();
-    setPage(1); // Reset to first page when filters change
+    setPage(1);
   }, [filters, dispatch, campers]);
 
   // Handle filter changes
@@ -104,8 +111,11 @@ const CatalogPage = () => {
   };
 
   // Slice the filtered campers list for pagination
-  const displayedCampers = filteredCampers.slice(0, page * itemsPerPage);
-
+  const displayedCampers = filteredCampers && filteredCampers.length > 0 && filteredCampers.slice(
+    0,
+    page * itemsPerPage
+  );
+  
   return (
     <div className={styles.catalogPage}>
       <div className={styles.filtersSection}>

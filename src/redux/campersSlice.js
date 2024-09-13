@@ -1,5 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { getCampers } from '../api/campers';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { getCampers, getCamperById } from '../api/campers';
+
+// Async action to fetch truck details by ID
+export const fetchCamperById = createAsyncThunk(
+  'campers/fetchCamperById',
+  async (id) => {
+    const response = await getCamperById(id);
+    return response.data;
+  }
+);
 
 const campersSlice = createSlice({
   name: 'campers',
@@ -17,8 +26,8 @@ const campersSlice = createSlice({
     setFilteredCampers(state, action) {
       state.filteredList = action.payload;
     },
-    resetFilters(state) {
-      state.filteredList = state.list;
+    resetFilteredList(state) {
+      state.filteredList = []; // Reset filteredList to empty array when filters are reset state.list;
     },
     setStatus(state, action) {
       state.status = action.payload;
@@ -27,9 +36,27 @@ const campersSlice = createSlice({
       state.error = action.payload;
     },
   },
+  extraReducers: (builder) => {
+    builder
+      // Handle loading state
+      .addCase(fetchCamperById.pending, (state) => {
+        state.status = 'loading';
+        state.error = null;
+      })
+      // Handle success state
+      .addCase(fetchCamperById.fulfilled, (state, action) => {
+        state.list = action.payload;
+        state.status = 'succeeded';
+      })
+      // Handle error state
+      .addCase(fetchCamperById.rejected, (state, action) => {
+        state.error = action.error.message;
+        state.status = 'failed';
+      });
+  },
 });
 
-export const { setCampers, setFilteredCampers, resetFilters, setStatus, setError } = campersSlice.actions;
+export const { setCampers, setFilteredCampers, resetFilteredList, setStatus, setError } = campersSlice.actions;
 
 export const fetchCampers = () => async (dispatch) => {
   dispatch(setStatus('loading'));

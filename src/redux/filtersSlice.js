@@ -33,9 +33,18 @@ const filtersSlice = createSlice({
     setTransmission(state, action) {
       state.transmission = action.payload;
     },
+    resetFilters(state) {
+      state.location = '';
+      state.type = '';
+      state.hasAC = false;
+      state.hasKitchen = false;
+      state.hasBathroom = false;
+      state.hasTV = false;
+      state.transmission = '';
+    },
   },
 });
 
-export const { setLocation, setType, setHasAC, setHasKitchen, setHasBathroom, setHasTV, setTransmission } = filtersSlice.actions;
+export const { setLocation, setType, setHasAC, setHasKitchen, setHasBathroom, setHasTV, setTransmission, resetFilters } = filtersSlice.actions;
 
 export default filtersSlice.reducer;
