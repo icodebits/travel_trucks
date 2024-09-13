@@ -91,7 +91,7 @@ const files = {
   ],
 };
 
-function SVG(props) {
+export const SVG = (props) => {
   if (props.isHidden) {
     return <svg display="none">{props.children}</svg>;
   }
@@ -123,7 +123,7 @@ function SVG(props) {
   );
 }
 
-function SVGSource() {
+export const SVGSource = () => {
   return (
     <SVG isHidden={true}>
       <defs>
@@ -141,5 +141,3 @@ function SVGSource() {
     </SVG>
   );
 }
-
-export { SVG, SVGSource };
