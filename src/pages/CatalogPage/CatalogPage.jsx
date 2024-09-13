@@ -93,8 +93,6 @@ const CatalogPage = () => {
         default:
           break;
       }
-    /*}
-    if (type === "radio") {*/
     } else {
       dispatch(name === "location" ? setLocation(value) : setType(value));
     }
