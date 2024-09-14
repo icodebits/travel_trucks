@@ -1,0 +1,53 @@
+.rewiewItem {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.comment {
+    color: #475467;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.thumbNameRatingContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.thumb {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* This makes the element a circle */
+    background-color: #F2F4F7; /* Optional: Set a background color */
+    display: flex;
+    justify-content: center; /* Horizontally center the content */
+    align-items: center; /* Vertically center the content */
+    color: #E44848; /* Optional: Text color */
+    font-size: 24px; /* Adjust the font size of the letter */
+    font-weight: bold; /* Optional: Bold letter */
+    text-align: center;
+}
+
+.nameRatingContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.name {
+    color: #101828;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+}

@@ -5,6 +5,7 @@ import { fetchCamperById } from "../../redux/campersSlice";
 import Loader from "../../components/Loader/Loader";
 import styles from "./CamperDetailPage.module.css";
 import { SVGSource, SVG } from "../../components/svg/svg";
+import ReviewList from "../../components/ReviewList/ReviewList";
 
 function CamperDetailPage() {
   const { id } = useParams();
@@ -32,18 +33,6 @@ function CamperDetailPage() {
         <div className={styles.container}>
           <div className={styles.title}>
             <h2 className={styles.name}>{camper.name}</h2>
-            {/*<div className={styles.camperTitle}>
-                <h2 className={styles.camperName}>{camper.name}</h2>
-                <div className={styles.camperPriceContainer}>
-                  <p className={styles.camperPrice}>
-                    €
-                    {camper.price.toLocaleString("en", {
-                      useGrouping: false,
-                      minimumFractionDigits: 2,
-                    })}
-                  </p>
-                </div>
-              </div>*/}
             <div className={styles.camperRatingLocationPriceContainer}>
               <div className={styles.camperRatingLocationContainer}>
                 <div className={styles.camperRatingContainer}>
@@ -204,11 +193,8 @@ function CamperDetailPage() {
             </div> /* details */
           )}
 
-          {activeTab === "reviews" && (
-            <div className="reviews-content">
-              <h2>Customer Reviews</h2>
-              <p>⭐⭐⭐⭐⭐ - Great experience with this vehicle!</p>
-            </div>
+          {activeTab === "reviews" && camper && camper.reviews && (
+            <ReviewList reviews={camper.reviews} />
           )}
         </div> /* container */
       )}
