@@ -1,0 +1,80 @@
+.title {
+    display: flex;
+    
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 28px;
+}
+
+.name {
+    color: #101828;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 32px;
+}
+
+.camperRatingLocationPriceContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.camperRatingLocationContainer {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.camperLocationContainer {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.camperRatingContainer {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: underline;
+}
+
+.camperPrice {
+    font-size: 24px;
+    font-weight: 600;
+    font-family: Inter, sans-serif;
+    color: #101828;
+    line-height: 32px;
+}
+
+/* Image gallery */
+.imageGallery {
+    display: flex;
+    width: 1312px;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 28px;
+}
+
+.imageGallery img {
+    width: 292px;
+    height: 312px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+/* Description */
+.description {
+    width: 1312px;
+    color: #475467;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    margin-bottom: 60px;
+}
