@@ -6,6 +6,7 @@ import Loader from "../../components/Loader/Loader";
 import styles from "./CamperDetailPage.module.css";
 import { SVGSource, SVG } from "../../components/svg/svg";
 import ReviewList from "../../components/ReviewList/ReviewList";
+import BookingForm from "../../components/BookingForm/BookingForm";
 
 function CamperDetailPage() {
   const { id } = useParams();
@@ -83,6 +84,7 @@ function CamperDetailPage() {
               Reviews
             </div>
           </div>
+          <div className={styles.detailsFormContainer}>
           {activeTab === "features" && (
             <div className={styles.details}>
               <div className={styles.camperInfo}>
@@ -196,6 +198,9 @@ function CamperDetailPage() {
           {activeTab === "reviews" && camper && camper.reviews && (
             <ReviewList reviews={camper.reviews} />
           )}
+
+          <BookingForm />
+          </div> {/* details and form */}
         </div> /* container */
       )}
       <SVGSource />
