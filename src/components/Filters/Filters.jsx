@@ -12,8 +12,9 @@ import styles from "./Filters.module.css";
 import { SVG } from "../../components/svg/svg";
 
 const Filters = () => {
-    const dispatch = useDispatch();
-    const filters = useSelector((state) => state.filters);
+  const dispatch = useDispatch();
+  const filters = useSelector((state) => state.filters);
+  
   // Handle filter changes
   const handleFilterChange = (event) => {
     const { name, value, checked, type } = event.target;
