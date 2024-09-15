@@ -216,6 +216,10 @@
   font-weight: 600;
   font-family: Inter;
   color: #101828;
+  overflow: hidden;
+  max-width: 350px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .camperPrice {
