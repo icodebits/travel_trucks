@@ -389,6 +389,8 @@ const CatalogPage = () => {
                 <Link
                   to={`/catalog/${camper.id}`}
                   className={styles.showMoreButton}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Show More
                 </Link>
