@@ -189,14 +189,25 @@
   gap: 12px;
 }
 
-.camperFavourite {
+.camperFavorite {
   cursor: pointer;
   fill: #101828;
   transition: fill 0.3s;
 }
 
-.camperFavourite:hover {
+.camperFavorite:hover {
   fill: #E44848;
+}
+
+.camperFavoriteAdded {
+  fill: #E44848;
+}
+
+.favoriteButton {
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 /* Camper card details */

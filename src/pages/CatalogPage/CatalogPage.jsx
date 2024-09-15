@@ -16,6 +16,10 @@ import {
   setTransmission,
   resetFilters,
 } from "../../redux/filtersSlice";
+import {
+  addToFavorites,
+  removeFromFavorites,
+} from "../../redux/favoritesSlice";
 import { Link } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import styles from "./CatalogPage.module.css";
@@ -29,6 +33,7 @@ const CatalogPage = () => {
   const filteredCampers = useSelector((state) => state.campers.filteredList);
   const filters = useSelector((state) => state.filters);
   const status = useSelector((state) => state.campers.status);
+  const favorites = useSelector((state) => state.favorites.list);
   const [page, setPage] = useState(1);
   const itemsPerPage = 4; // Number of items per page
 
@@ -115,6 +120,19 @@ const CatalogPage = () => {
     0,
     page * itemsPerPage
   );
+  
+  // Handle favorites
+  const getIsFavorite = (id) => {
+    return favorites.includes(id);
+  }
+
+  const handleFavoriteClick = (id) => {
+    if (getIsFavorite(id)) {
+      dispatch(removeFromFavorites(id));
+    } else {
+      dispatch(addToFavorites(id));
+    }
+  };
   
   return (
     <div className={styles.catalogPage}>
@@ -217,9 +235,7 @@ const CatalogPage = () => {
 
           <div className={styles.checkboxGroup}>
             <label
-              className={`${styles.checkboxLabel} ${
-                styles.checkboxLabelLong
-              } ${
+              className={`${styles.checkboxLabel} ${styles.checkboxLabelLong} ${
                 filters.type === "panelTruck" ? styles.checkboxLabelActive : ""
               }`}
             >
@@ -288,12 +304,22 @@ const CatalogPage = () => {
                           minimumFractionDigits: 2,
                         })}
                       </p>
-                      <SVG
-                        id="favourite"
-                        width={24}
-                        height={24}
-                        className={styles.camperFavourite}
-                      />
+                      <button
+                        key={camper.id}
+                        onClick={() => handleFavoriteClick(camper.id)}
+                        className={styles.favoriteButton}
+                      >
+                        <SVG
+                          id="favorite"
+                          width={24}
+                          height={24}
+                          className={
+                            getIsFavorite(camper.id)
+                              ? styles.camperFavoriteAdded
+                              : styles.camperFavorite
+                          }
+                        />
+                      </button>
                     </div>
                   </div>
                   <div className={styles.camperRatingLocationContainer}>
