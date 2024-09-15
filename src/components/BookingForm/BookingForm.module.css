@@ -108,3 +108,61 @@
 .bookingFormContainer button:hover {
   background-color: #D84343;
 }
+
+/* Popup message styling */
+.popupMessage {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: white;
+  color: #101828;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid #4CAF50;
+}
+
+.popupMessage .popupText {
+  margin: 0;
+  font-size: 16px;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.popupMessage .closeButton {
+  background-color: white;
+  color: #101828;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  border-radius: 200px;
+  border: 1px solid #DADDE1;
+  padding: 16px 40px;
+}
+
+.popupMessage .closeButton:hover {
+  background-color: white;
+  border-color:#D84343;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

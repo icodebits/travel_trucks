@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup"; // For form validation
 import styles from "./BookingForm.module.css";
@@ -12,6 +13,9 @@ import "./customReactDatePicker.css";
 registerLocale("en-GB", enGB);
 
 const BookingForm = () => {
+  // State to control the popup visibility
+  const [showPopup, setShowPopup] = useState(false);
+
   // Validation schema using Yup
   const validationSchema = Yup.object({
     name: Yup.string().required("Name is required"),
@@ -35,6 +39,14 @@ const BookingForm = () => {
     console.log(values); // Replace with your submission logic
     setSubmitting(false);
     resetForm();
+
+    // Show the popup message
+    setShowPopup(true);
+
+    // Hide the popup after 5 seconds
+    setTimeout(() => {
+      setShowPopup(false);
+    }, 5000);
   };
 
   return (
@@ -128,6 +140,13 @@ const BookingForm = () => {
           </Form>
         )}
       </Formik>
+      {/* Conditionally render the popup message */}
+      {showPopup && (
+        <div className={styles.popupMessage}>
+          <p className={styles.popupText}>Form submitted successfully!</p>
+          <button onClick={() => setShowPopup(false)} className={styles.closeButton}>Close</button>
+        </div>
+      )}
     </div>
   );
 };
