@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchCamperById } from "../../redux/campersSlice";
+import { fetchCamperById } from "../../api/campers";
 import Loader from "../../components/Loader/Loader";
 import styles from "./CamperDetailPage.module.css";
 import { SVGSource, SVG } from "../../components/svg/svg";
@@ -21,16 +21,13 @@ function CamperDetailPage() {
 
   // Fetch camper data based on the ID from the URL
   useEffect(() => {
-    const fetch = async () => {
-      dispatch(fetchCamperById(id));
-    };
-    fetch();
+    dispatch(fetchCamperById(id));
   }, [dispatch, id]);
 
   return (
     <>
       {status === "loading" && <Loader />}
-      {status === "succeeded" && camper && camper.reviews && (
+      {status === "succeeded" && camper && (
         <div className={styles.container}>
           <div className={styles.title}>
             <h2 className={styles.name}>{camper.name}</h2>
@@ -195,7 +192,7 @@ function CamperDetailPage() {
             </div> /* details */
           )}
 
-          {activeTab === "reviews" && camper && camper.reviews && (
+          {activeTab === "reviews" && camper.reviews && (
             <ReviewList reviews={camper.reviews} />
           )}
 

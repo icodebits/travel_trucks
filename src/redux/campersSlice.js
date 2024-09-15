@@ -1,14 +1,5 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getCampers, getCamperById } from '../api/campers';
-
-// Async action to fetch truck details by ID
-export const fetchCamperById = createAsyncThunk(
-  'campers/fetchCamperById',
-  async (id) => {
-    const response = await getCamperById(id);
-    return response.data;
-  }
-);
+import { createSlice } from '@reduxjs/toolkit';
+import { fetchCampers, fetchCamperById } from '../api/campers';
 
 const campersSlice = createSlice({
   name: 'campers',
@@ -38,17 +29,33 @@ const campersSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // Handle loading state
+      // Handle fetchCampers loading state
+      .addCase(fetchCampers.pending, (state) => {
+        state.status = 'loading';
+        state.error = null;
+      })
+      // Handle fetchCampers success state
+      .addCase(fetchCampers.fulfilled, (state, action) => {
+        state.list = action.payload;
+        state.filteredList = action.payload;
+        state.status = 'succeeded';
+      })
+      // Handle fetchCampers error state
+      .addCase(fetchCampers.rejected, (state, action) => {
+        state.error = action.error.message;
+        state.status = 'failed';
+      })
+      // Handle fetchCamperById loading state
       .addCase(fetchCamperById.pending, (state) => {
         state.status = 'loading';
         state.error = null;
       })
-      // Handle success state
+      // Handle fetchCamperById success state
       .addCase(fetchCamperById.fulfilled, (state, action) => {
         state.list = action.payload;
         state.status = 'succeeded';
       })
-      // Handle error state
+      // Handle fetchCamperById error state
       .addCase(fetchCamperById.rejected, (state, action) => {
         state.error = action.error.message;
         state.status = 'failed';
@@ -56,18 +63,6 @@ const campersSlice = createSlice({
   },
 });
 
-export const { setCampers, setFilteredCampers, resetFilteredList, setStatus, setError } = campersSlice.actions;
-
-export const fetchCampers = () => async (dispatch) => {
-  dispatch(setStatus('loading'));
-  try {
-    const response = await getCampers();
-    dispatch(setCampers(response.data.items));
-    dispatch(setStatus('succeeded'));
-  } catch (error) {
-    dispatch(setError(error.toString()));
-    dispatch(setStatus('failed'));
-  }
-};
+export const { setFilteredCampers, resetFilteredList } = campersSlice.actions;
 
 export default campersSlice.reducer;

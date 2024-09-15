@@ -1,8 +1,7 @@
-// src/pages/CatalogPage.js
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { fetchCampers } from "../../api/campers";
 import {
-  fetchCampers,
   setFilteredCampers,
   resetFilteredList,
 } from "../../redux/campersSlice";
@@ -39,10 +38,7 @@ const CatalogPage = () => {
 
   // Fetch campers data
   useEffect(() => {
-    const fetch = async () => {
       dispatch(fetchCampers());
-    };
-    fetch();
   }, [dispatch]);
 
   // Apply filters
@@ -288,7 +284,7 @@ const CatalogPage = () => {
 
       <div className={styles.campersList}>
         {status === "loading" && <Loader />}
-        {status === "succeeded" &&
+        {status === "succeeded" && displayedCampers &&
           displayedCampers.map((camper) => (
             <div key={camper.id} className={styles.camperCard}>
               <img src={camper.gallery[0].thumb} alt={camper.name} />
