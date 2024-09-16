@@ -115,3 +115,23 @@
 .checkboxLabelActive {
   border-color: #E44848;
 }
+
+/* Show more button */
+.searchButton {
+  padding: 16px 40px;
+  background-color: #E44848;
+  color: white;
+  border: none;
+  border-radius: 200px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 16px;
+  font-family: Inter, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.searchButton:hover {
+  background-color: #D84343;
+}
